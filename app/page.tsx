@@ -2,25 +2,7 @@
 
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { 
-  ArrowRight, 
-  Globe,
-  ShoppingBag,
-  Database,
-  Smartphone,
-  LifeBuoy,
-  Code2,
-  Plus,
-  ChevronLeft,
-  ChevronRight,
-  ChevronDown,
-  Mail,
-  ShoppingCart,
-  BarChart3,
-  QrCode,
-  ExternalLink,
-  Check,
-  Zap,
-  Layers
+  ArrowRight, Globe, ShoppingBag, Database, Smartphone, LifeBuoy, Code2, Plus, ChevronLeft, ChevronRight, ChevronDown, Mail, ShoppingCart, BarChart3, QrCode, ExternalLink, Check, Zap, Layers
 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import Terminal from '../components/Terminal';
@@ -335,51 +317,27 @@ function ServiceCard({ service, icon, index, diff, isActive }: { service: any, i
   return (
     <motion.div
       ref={divRef}
-      animate={{
-        x: `calc(${diff} * (100% + 2rem))`,
-        scale: isActive ? 1 : 0.85,
-        opacity: isActive ? 1 : Math.abs(diff) === 1 ? 0.3 : 0,
-        zIndex: isActive ? 20 : 10
-      }}
+      animate={{ x: `calc(${diff} * (100% + 2rem))`, scale: isActive ? 1 : 0.85, opacity: isActive ? 1 : Math.abs(diff) === 1 ? 0.3 : 0, zIndex: isActive ? 20 : 10 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setOpacity(1)}
-      onMouseLeave={() => setOpacity(0)}
+      onMouseMove={handleMouseMove} onMouseEnter={() => setOpacity(1)} onMouseLeave={() => setOpacity(0)}
       className={`absolute inset-0 flex flex-col overflow-hidden rounded-3xl bg-[#0A0A0A] border border-[#1E1E1E] p-8 md:p-12 transition-colors duration-500 ${isActive ? 'hover:border-[#a855f7]/50' : ''}`}
       style={{ pointerEvents: isActive ? 'auto' : 'none' }}
     >
-      <div
-        className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300"
-        style={{
-          opacity: isActive ? opacity : 0,
-          background: `radial-gradient(800px circle at ${position.x}px ${position.y}px, rgba(168,85,247,0.08), transparent 40%)`,
-        }}
-      />
+      <div className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300" style={{ opacity: isActive ? opacity : 0, background: `radial-gradient(800px circle at ${position.x}px ${position.y}px, rgba(168,85,247,0.08), transparent 40%)` }} />
       <div className="relative z-10 flex flex-col h-full">
         <div className="flex justify-between items-start mb-6">
           <div className="w-14 h-14 rounded-2xl bg-[#141414] border border-[#1E1E1E] flex items-center justify-center group-hover:scale-110 group-hover:bg-[#a855f7] group-hover:border-[#a855f7] transition-all duration-500 ease-out">
-            <div className="text-[#EDEDED] transition-all duration-500">
-              {icon}
-            </div>
+            <div className="text-[#EDEDED] transition-all duration-500">{icon}</div>
           </div>
-          <span className="font-mono text-xl md:text-2xl font-bold tracking-widest text-[#a855f7]/40 group-hover:text-[#a855f7] transition-colors duration-500">
-            {formattedIndex}
-          </span>
+          <span className="font-mono text-xl md:text-2xl font-bold tracking-widest text-[#a855f7]/40 group-hover:text-[#a855f7] transition-colors duration-500">{formattedIndex}</span>
         </div>
         <div className="flex-grow flex flex-col justify-center mb-6 overflow-y-auto no-scrollbar pr-2">
           <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">{service.title}</h3>
-          <p className="text-[#8A8A8A] text-sm md:text-base leading-relaxed max-w-2xl">
-            {service.description}
-          </p>
+          <p className="text-[#8A8A8A] text-sm md:text-base leading-relaxed max-w-2xl">{service.description}</p>
         </div>
         <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-[#1E1E1E]/50">
           {service.tags.map((tag: string, tagIndex: number) => (
-            <span 
-              key={tagIndex} 
-              className="px-3 py-1.5 text-[10px] md:text-xs font-mono tracking-widest uppercase text-purple-300/80 border border-purple-500/30 rounded-lg bg-purple-500/[0.05] shadow-[0_0_12px_rgba(168,85,247,0.12)_inset_0_1px_0_rgba(168,85,247,0.10)]"
-            >
-              {tag}
-            </span>
+            <span key={tagIndex} className="px-3 py-1.5 text-[10px] md:text-xs font-mono tracking-widest uppercase text-purple-300/80 border border-purple-500/30 rounded-lg bg-purple-500/[0.05] shadow-[0_0_12px_rgba(168,85,247,0.12)_inset_0_1px_0_rgba(168,85,247,0.10)]">{tag}</span>
           ))}
         </div>
       </div>
@@ -390,33 +348,14 @@ function ServiceCard({ service, icon, index, diff, isActive }: { service: any, i
 function FAQItem({ faq, isOpen, onClick }: { faq: any, isOpen: boolean, onClick: () => void }) {
   return (
     <div className="border-b border-[#1E1E1E]">
-      <button
-        onClick={onClick}
-        className="flex w-full items-center justify-between py-6 text-left focus:outline-none group"
-      >
-        <span className="text-lg md:text-xl font-medium tracking-tight group-hover:text-[#a855f7] transition-colors duration-300 pr-4">
-          {faq.q}
-        </span>
-        <motion.div
-          animate={{ rotate: isOpen ? 45 : 0 }}
-          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className={`flex-shrink-0 transition-colors duration-300 ${isOpen ? 'text-[#a855f7]' : 'text-[#8A8A8A]'}`}
-        >
-          <Plus size={24} />
-        </motion.div>
+      <button onClick={onClick} className="flex w-full items-center justify-between py-6 text-left focus:outline-none group">
+        <span className="text-lg md:text-xl font-medium tracking-tight group-hover:text-[#a855f7] transition-colors duration-300 pr-4">{faq.q}</span>
+        <motion.div animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }} className={`flex-shrink-0 transition-colors duration-300 ${isOpen ? 'text-[#a855f7]' : 'text-[#8A8A8A]'}`}><Plus size={24} /></motion.div>
       </button>
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden"
-          >
-            <p className="pb-8 text-[#8A8A8A] text-base md:text-lg leading-relaxed pr-8 md:pr-12 text-left">
-              {faq.a}
-            </p>
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} className="overflow-hidden">
+            <p className="pb-8 text-[#8A8A8A] text-base md:text-lg leading-relaxed pr-8 md:pr-12 text-left">{faq.a}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -435,6 +374,12 @@ export default function PortfolioPage() {
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+
+  // Variables de Entorno (si no existen localmente, se usa un fallback genérico que no exponga tus datos reales a bots de github si falta el env)
+  const waNumber = process.env.NEXT_PUBLIC_WHATSAPP || ""; 
+  const waLink = waNumber ? `https://wa.me/${waNumber}` : "#";
+  const email = process.env.NEXT_PUBLIC_EMAIL || "";
+  const mailLink = email ? `mailto:${email}` : "#";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -480,24 +425,9 @@ export default function PortfolioPage() {
           <div className="flex items-center gap-6">
             
             <div className="flex items-center p-1 bg-[#141414] border border-[#1E1E1E] rounded-full shadow-sm relative w-[96px] h-[34px]">
-              <button 
-                onClick={() => setLang('es')} 
-                className={`w-1/2 relative z-10 text-center text-[10px] font-bold tracking-widest transition-colors duration-300 ${lang === 'es' ? 'text-white' : 'text-[#8A8A8A] hover:text-white'}`}
-              >
-                ES
-              </button>
-              <button 
-                onClick={() => setLang('en')} 
-                className={`w-1/2 relative z-10 text-center text-[10px] font-bold tracking-widest transition-colors duration-300 ${lang === 'en' ? 'text-white' : 'text-[#8A8A8A] hover:text-white'}`}
-              >
-                EN
-              </button>
-              <motion.div 
-                className="absolute top-1 bottom-1 w-[42px] bg-[#a855f7] rounded-full shadow-[0_0_10px_rgba(168,85,247,0.4)] z-0"
-                initial={false}
-                animate={{ left: lang === 'es' ? '4px' : '46px' }}
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
-              />
+              <button onClick={() => setLang('es')} className={`w-1/2 relative z-10 text-center text-[10px] font-bold tracking-widest transition-colors duration-300 ${lang === 'es' ? 'text-white' : 'text-[#8A8A8A] hover:text-white'}`}>ES</button>
+              <button onClick={() => setLang('en')} className={`w-1/2 relative z-10 text-center text-[10px] font-bold tracking-widest transition-colors duration-300 ${lang === 'en' ? 'text-white' : 'text-[#8A8A8A] hover:text-white'}`}>EN</button>
+              <motion.div className="absolute top-1 bottom-1 w-[42px] bg-[#a855f7] rounded-full shadow-[0_0_10px_rgba(168,85,247,0.4)] z-0" initial={false} animate={{ left: lang === 'es' ? '4px' : '46px' }} transition={{ type: "spring", stiffness: 400, damping: 30 }} />
             </div>
 
             <a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')} className="hidden md:block px-5 py-2 text-sm bg-white text-black font-semibold rounded-full hover:scale-105 transition-transform duration-300">
@@ -509,28 +439,9 @@ export default function PortfolioPage() {
 
       <main>
         <section className="relative w-full min-h-screen flex flex-col justify-center items-center px-6 overflow-hidden">
-          <motion.div 
-            animate={{ backgroundPosition: ['0px 0px', '0px 40px'] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-            className="absolute inset-0 z-0 opacity-20 pointer-events-none" 
-            style={{ 
-              backgroundImage: `linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px)`, 
-              backgroundSize: '40px 40px', 
-              maskImage: 'radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%)', 
-              WebkitMaskImage: 'radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%)' 
-            }}
-          />
-          
-          <motion.div 
-            animate={{ x: [0, 50, -30, 0], y: [0, -50, 30, 0], scale: [1, 1.1, 0.9, 1] }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-[#a855f7]/20 blur-[120px] pointer-events-none" 
-          />
-          <motion.div 
-            animate={{ x: [0, -40, 20, 0], y: [0, 40, -20, 0], scale: [1, 0.9, 1.1, 1] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-white/10 blur-[120px] pointer-events-none" 
-          />
+          <motion.div animate={{ backgroundPosition: ['0px 0px', '0px 40px'] }} transition={{ repeat: Infinity, duration: 2, ease: "linear" }} className="absolute inset-0 z-0 opacity-20 pointer-events-none" style={{ backgroundImage: `linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px)`, backgroundSize: '40px 40px', maskImage: 'radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%)', WebkitMaskImage: 'radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%)' }} />
+          <motion.div animate={{ x: [0, 50, -30, 0], y: [0, -50, 30, 0], scale: [1, 1.1, 0.9, 1] }} transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }} className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-[#a855f7]/20 blur-[120px] pointer-events-none" />
+          <motion.div animate={{ x: [0, -40, 20, 0], y: [0, 40, -20, 0], scale: [1, 0.9, 1.1, 1] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }} className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-white/10 blur-[120px] pointer-events-none" />
 
           <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative z-10 w-full max-w-7xl mx-auto text-center pt-20 px-4">
             <motion.div initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="mb-10 flex justify-center">
@@ -546,11 +457,7 @@ export default function PortfolioPage() {
                 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-bold tracking-tighter leading-none z-10 flex flex-wrap justify-center w-full px-2"
               >
                 {t.hero.title1.split('').map((char, index) => (
-                  <motion.span
-                    key={index}
-                    variants={{ hidden: { opacity: 0, y: "100%", rotateX: -90 }, visible: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
-                    style={{ display: "inline-block", transformOrigin: "bottom", whiteSpace: "pre" }}
-                  >
+                  <motion.span key={index} variants={{ hidden: { opacity: 0, y: "100%", rotateX: -90 }, visible: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }} style={{ display: "inline-block", transformOrigin: "bottom", whiteSpace: "pre" }}>
                     {char}
                   </motion.span>
                 ))}
@@ -562,21 +469,14 @@ export default function PortfolioPage() {
                 className="text-5xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-serif italic tracking-tight leading-none text-[#a855f7] z-20 flex flex-wrap justify-center w-full px-2"
               >
                 {t.hero.title2.split('').map((char, index) => (
-                  <motion.span
-                    key={index}
-                    variants={{ hidden: { opacity: 0, filter: "blur(12px)", scale: 1.2 }, visible: { opacity: 1, filter: "blur(0px)", scale: 1, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
-                    style={{ display: "inline-block", whiteSpace: "pre" }}
-                  >
+                  <motion.span key={index} variants={{ hidden: { opacity: 0, filter: "blur(12px)", scale: 1.2 }, visible: { opacity: 1, filter: "blur(0px)", scale: 1, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }} style={{ display: "inline-block", whiteSpace: "pre" }}>
                     {char}
                   </motion.span>
                 ))}
               </motion.h1>
             </div>
 
-            <motion.p 
-              initial={{ opacity: 0, y: 20, filter: "blur(10px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 1, delay: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-lg md:text-xl text-[#8A8A8A] max-w-2xl mx-auto mb-14 leading-relaxed px-4"
-            >
+            <motion.p initial={{ opacity: 0, y: 20, filter: "blur(10px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 1, delay: 1, ease: [0.16, 1, 0.3, 1] }} className="text-lg md:text-xl text-[#8A8A8A] max-w-2xl mx-auto mb-14 leading-relaxed px-4">
               {t.hero.desc}
             </motion.p>
 
@@ -603,16 +503,10 @@ export default function PortfolioPage() {
           <div className="max-w-4xl mx-auto px-6 mb-20 flex flex-col items-center text-center">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8 }}>
               <h2 className="text-4xl md:text-6xl font-semibold tracking-tight mb-6">{t.services.title}</h2>
-              <p className="text-[#8A8A8A] text-lg md:text-xl leading-relaxed mb-10 max-w-2xl mx-auto">
-                {t.services.desc}
-              </p>
+              <p className="text-[#8A8A8A] text-lg md:text-xl leading-relaxed mb-10 max-w-2xl mx-auto">{t.services.desc}</p>
               <div className="flex gap-4 justify-center">
-                <button onClick={handlePrev} className="w-14 h-14 rounded-full border border-[#1E1E1E] bg-[#141414] flex items-center justify-center hover:bg-[#1E1E1E] hover:text-[#a855f7] transition-colors z-30">
-                  <ChevronLeft size={24} />
-                </button>
-                <button onClick={handleNext} className="w-14 h-14 rounded-full border border-[#1E1E1E] bg-[#141414] flex items-center justify-center hover:bg-[#1E1E1E] hover:text-[#a855f7] transition-colors z-30">
-                  <ChevronRight size={24} />
-                </button>
+                <button onClick={handlePrev} className="w-14 h-14 rounded-full border border-[#1E1E1E] bg-[#141414] flex items-center justify-center hover:bg-[#1E1E1E] hover:text-[#a855f7] transition-colors z-30"><ChevronLeft size={24} /></button>
+                <button onClick={handleNext} className="w-14 h-14 rounded-full border border-[#1E1E1E] bg-[#141414] flex items-center justify-center hover:bg-[#1E1E1E] hover:text-[#a855f7] transition-colors z-30"><ChevronRight size={24} /></button>
               </div>
             </motion.div>
           </div>
@@ -625,17 +519,7 @@ export default function PortfolioPage() {
                 if (diff < -Math.floor(total / 2)) diff += total;
                 if (diff > Math.floor((total - 1) / 2)) diff -= total;
                 const isActive = diff === 0;
-
-                return (
-                  <ServiceCard 
-                    key={`${lang}-${index}`} 
-                    service={service} 
-                    icon={serviceIcons[index]}
-                    index={index} 
-                    diff={diff} 
-                    isActive={isActive} 
-                  />
-                );
+                return <ServiceCard key={`${lang}-${index}`} service={service} icon={serviceIcons[index]} index={index} diff={diff} isActive={isActive} />;
               })}
             </div>
           </div>
@@ -650,11 +534,7 @@ export default function PortfolioPage() {
             
             <div className="max-w-4xl mx-auto relative border-l border-[#1E1E1E] ml-4 md:ml-auto">
               {t.process.steps.map((step, index) => (
-                <motion.div 
-                  key={index}
-                  initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className="relative pl-10 md:pl-16 pb-16 last:pb-0 group"
-                >
+                <motion.div key={index} initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, delay: index * 0.2 }} className="relative pl-10 md:pl-16 pb-16 last:pb-0 group">
                   <div className="absolute left-[-6px] top-0 w-3 h-3 bg-[#141414] border border-[#a855f7] rounded-full group-hover:bg-[#a855f7] group-hover:scale-150 transition-all duration-300 shadow-[0_0_10px_rgba(168,85,247,0.5)]" />
                   <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
                     <span className="font-mono text-4xl font-bold text-[#1E1E1E] group-hover:text-[#a855f7]/30 transition-colors duration-500 leading-none">{step.num}</span>
@@ -671,37 +551,19 @@ export default function PortfolioPage() {
 
         <section id="filosofia" className="py-32 relative z-20 bg-[#050505] border-b border-[#1E1E1E] overflow-hidden">
           <div className="absolute top-0 right-0 w-[60vw] h-[60vw] bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.05),transparent_70%)] pointer-events-none" />
-          
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-              
               <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8 }}>
-                <span className="inline-block px-4 py-2 rounded-full border border-[#a855f7]/30 bg-[#a855f7]/10 text-[#a855f7] text-[10px] font-mono tracking-widest uppercase mb-8">
-                  {t.philosophy.tag}
-                </span>
-                <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8 leading-[1.1]">
-                  {t.philosophy.title}
-                </h2>
+                <span className="inline-block px-4 py-2 rounded-full border border-[#a855f7]/30 bg-[#a855f7]/10 text-[#a855f7] text-[10px] font-mono tracking-widest uppercase mb-8">{t.philosophy.tag}</span>
+                <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8 leading-[1.1]">{t.philosophy.title}</h2>
                 <div className="space-y-6">
-                  <p className="text-[#8A8A8A] text-lg md:text-xl leading-relaxed">
-                    {t.philosophy.p1}
-                  </p>
-                  <p className="text-white text-lg md:text-xl leading-relaxed font-medium">
-                    {t.philosophy.p2}
-                  </p>
+                  <p className="text-[#8A8A8A] text-lg md:text-xl leading-relaxed">{t.philosophy.p1}</p>
+                  <p className="text-white text-lg md:text-xl leading-relaxed font-medium">{t.philosophy.p2}</p>
                 </div>
               </motion.div>
-
               <div className="flex flex-col gap-6">
                 {t.philosophy.pillars.map((pillar, idx) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, x: 30 }} 
-                    whileInView={{ opacity: 1, x: 0 }} 
-                    viewport={{ once: true, margin: "-100px" }} 
-                    transition={{ duration: 0.6, delay: idx * 0.2 }}
-                    className="p-8 rounded-3xl bg-[#0A0A0A] border border-[#1E1E1E] flex items-start gap-6 group hover:border-[#a855f7]/40 transition-colors"
-                  >
+                  <motion.div key={idx} initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, delay: idx * 0.2 }} className="p-8 rounded-3xl bg-[#0A0A0A] border border-[#1E1E1E] flex items-start gap-6 group hover:border-[#a855f7]/40 transition-colors">
                     <div className="w-12 h-12 rounded-full bg-[#141414] border border-[#1E1E1E] flex items-center justify-center shrink-0 group-hover:bg-[#a855f7] group-hover:text-white transition-colors text-[#8A8A8A]">
                       {idx === 0 ? <Code2 size={20} /> : idx === 1 ? <Zap size={20} /> : <Layers size={20} />}
                     </div>
@@ -712,7 +574,6 @@ export default function PortfolioPage() {
                   </motion.div>
                 ))}
               </div>
-
             </div>
           </div>
         </section>
@@ -728,29 +589,14 @@ export default function PortfolioPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {t.portfolio.items.map((item, index) => (
-                <motion.div 
-                  key={index}
-                  onClick={() => item.route ? window.location.href = item.route : null}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className={`group relative h-[420px] rounded-3xl border border-[#1E1E1E] bg-[#0A0A0A] flex flex-col justify-between p-8 md:p-10 overflow-hidden hover:border-[#a855f7]/50 transition-all duration-500 ${item.route ? 'cursor-pointer' : 'cursor-default'}`}
-                >
+                <motion.div key={index} onClick={() => item.route ? window.location.href = item.route : null} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: index * 0.2 }} className={`group relative h-[420px] rounded-3xl border border-[#1E1E1E] bg-[#0A0A0A] flex flex-col justify-between p-8 md:p-10 overflow-hidden hover:border-[#a855f7]/50 transition-all duration-500 ${item.route ? 'cursor-pointer' : 'cursor-default'}`}>
                   {item.image && (
                     <>
-                      <img 
-                        src={item.image} 
-                        alt={item.name} 
-                        className="absolute inset-0 w-full h-full object-cover opacity-25 grayscale group-hover:grayscale-0 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700 ease-out z-0"
-                      />
+                      <img src={item.image} alt={item.name} className="absolute inset-0 w-full h-full object-cover opacity-25 grayscale group-hover:grayscale-0 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700 ease-out z-0" />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/80 to-[#0A0A0A]/40 z-0" />
                     </>
                   )}
-
-                  {!item.image && (
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#a855f7]/5 rounded-bl-full transition-all duration-500 group-hover:bg-[#a855f7]/20 group-hover:scale-110 z-0" />
-                  )}
+                  {!item.image && <div className="absolute top-0 right-0 w-32 h-32 bg-[#a855f7]/5 rounded-bl-full transition-all duration-500 group-hover:bg-[#a855f7]/20 group-hover:scale-110 z-0" />}
 
                   <div className="relative z-10 flex flex-col justify-between h-full">
                     <div>
@@ -760,27 +606,19 @@ export default function PortfolioPage() {
                         </div>
                         {item.route && (
                           <div className="flex items-center gap-2 text-xs font-mono text-[#a855f7] bg-[#a855f7]/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-[#a855f7]/20">
-                            <span>Demo Live</span>
-                            <ExternalLink size={14} />
+                            <span>Demo Live</span><ExternalLink size={14} />
                           </div>
                         )}
                       </div>
-
                       <div>
                         <span className="text-xs font-mono tracking-widest text-[#a855f7] uppercase mb-2 block">{item.type}</span>
                         <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">{item.name}</h3>
                         <p className="text-[#8A8A8A] text-sm leading-relaxed max-w-md">{item.desc}</p>
                       </div>
                     </div>
-
                     <div className="flex flex-wrap gap-2 pt-4 border-t border-[#1E1E1E]/60">
                       {item.tags.map((tag: string, tagIndex: number) => (
-                        <span 
-                          key={tagIndex} 
-                          className="px-3 py-1.5 text-[10px] md:text-xs font-mono tracking-widest uppercase text-[#8A8A8A] border border-[#1E1E1E] rounded-lg bg-[#0A0A0A]/80 backdrop-blur-md group-hover:border-[#a855f7]/30 group-hover:text-purple-300 transition-colors duration-500"
-                        >
-                          {tag}
-                        </span>
+                        <span key={tagIndex} className="px-3 py-1.5 text-[10px] md:text-xs font-mono tracking-widest uppercase text-[#8A8A8A] border border-[#1E1E1E] rounded-lg bg-[#0A0A0A]/80 backdrop-blur-md group-hover:border-[#a855f7]/30 group-hover:text-purple-300 transition-colors duration-500">{tag}</span>
                       ))}
                     </div>
                   </div>
@@ -796,17 +634,9 @@ export default function PortfolioPage() {
               <h2 className="text-4xl md:text-6xl font-semibold tracking-tight mb-6">{t.pricing.title}</h2>
               <p className="text-[#8A8A8A] text-lg md:text-xl leading-relaxed">{t.pricing.desc}</p>
             </motion.div>
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {t.pricing.tiers.map((tier, index) => (
-                <motion.div 
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className="relative flex flex-col justify-between rounded-3xl bg-[#141414] border border-[#1E1E1E] p-8 md:p-10 hover:border-[#a855f7]/50 transition-all duration-500 group"
-                >
+                <motion.div key={index} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: index * 0.2 }} className="relative flex flex-col justify-between rounded-3xl bg-[#141414] border border-[#1E1E1E] p-8 md:p-10 hover:border-[#a855f7]/50 transition-all duration-500 group">
                   <div>
                     <div className="flex justify-between items-center mb-6">
                       <h3 className="text-2xl font-bold text-white">{tier.name}</h3>
@@ -814,7 +644,6 @@ export default function PortfolioPage() {
                     </div>
                     <p className="text-[#8A8A8A] text-sm leading-relaxed mb-8">{tier.desc}</p>
                     <div className="text-3xl md:text-4xl font-bold text-white mb-8 tracking-tight">{tier.price}</div>
-                    
                     <ul className="flex flex-col gap-4 mb-10">
                       {tier.features.map((feat, fIndex) => (
                         <li key={fIndex} className="flex items-center gap-3 text-sm text-[#8A8A8A]">
@@ -824,10 +653,7 @@ export default function PortfolioPage() {
                       ))}
                     </ul>
                   </div>
-
-                  <a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')} className="w-full py-4 rounded-xl border border-[#1E1E1E] bg-[#0A0A0A] text-white font-semibold text-center hover:bg-[#a855f7] hover:border-[#a855f7] transition-all duration-300">
-                    {t.pricing.cta}
-                  </a>
+                  <a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')} className="w-full py-4 rounded-xl border border-[#1E1E1E] bg-[#0A0A0A] text-white font-semibold text-center hover:bg-[#a855f7] hover:border-[#a855f7] transition-all duration-300">{t.pricing.cta}</a>
                 </motion.div>
               ))}
             </div>
@@ -839,7 +665,6 @@ export default function PortfolioPage() {
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tight mb-4">{t.faq.title}</h2>
             <p className="text-[#8A8A8A] text-lg">{t.faq.desc}</p>
           </motion.div>
-
           <div className="border-t border-[#1E1E1E]">
             {t.faq.items.map((faq, index) => (
               <FAQItem key={`${lang}-faq-${index}`} faq={faq} isOpen={openFaqIndex === index} onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)} />
@@ -849,21 +674,19 @@ export default function PortfolioPage() {
 
         <section id="contacto" className="py-32 px-6 relative bg-[#0A0A0A] border-t border-[#1E1E1E]">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[300px] bg-[radial-gradient(ellipse_at_top,rgba(168,85,247,0.1),transparent_50%)] pointer-events-none" />
-          
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 items-center">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 1 }} className="flex-1 text-center md:text-left">
               <h2 className="text-5xl md:text-7xl font-semibold tracking-tighter mb-6">{t.contact.title}</h2>
               <p className="text-[#8A8A8A] text-xl mb-10 max-w-lg mx-auto md:mx-0">{t.contact.desc}</p>
-              <a href="https://wa.me/56977742447" target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 px-10 py-5 bg-[#a855f7] text-white font-bold rounded-full hover:bg-purple-500 transition-all duration-300 text-lg shadow-[0_0_30px_rgba(168,85,247,0.3)]">
+              <a href={waLink} target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 px-10 py-5 bg-[#a855f7] text-white font-bold rounded-full hover:bg-purple-500 transition-all duration-300 text-lg shadow-[0_0_30px_rgba(168,85,247,0.3)]">
                 {t.contact.btn}
                 <ArrowRight size={20} />
               </a>
             </motion.div>
-            
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.2 }} className="flex-1 w-full bg-[#141414] border border-[#1E1E1E] rounded-3xl p-8 md:p-12">
               <h3 className="text-xl font-bold mb-8 text-white">{t.contact.social}</h3>
               <div className="flex flex-col gap-4">
-                <a href="https://wa.me/56977742447" target="_blank" rel="noreferrer" className="flex items-center gap-4 p-4 rounded-xl hover:bg-[#1E1E1E] transition-colors group">
+                <a href={waLink} target="_blank" rel="noreferrer" className="flex items-center gap-4 p-4 rounded-xl hover:bg-[#1E1E1E] transition-colors group">
                   <div className="w-12 h-12 bg-[#0A0A0A] border border-[#1E1E1E] rounded-lg flex items-center justify-center group-hover:border-[#a855f7] group-hover:text-[#a855f7] transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
                   </div>
@@ -875,7 +698,7 @@ export default function PortfolioPage() {
                   </div>
                   <span className="font-medium text-[#EDEDED] group-hover:text-white">GitHub (eldropg)</span>
                 </a>
-                <a href="mailto:contacto.pedropozo@gmail.com" className="flex items-center gap-4 p-4 rounded-xl hover:bg-[#1E1E1E] transition-colors group">
+                <a href={mailLink} className="flex items-center gap-4 p-4 rounded-xl hover:bg-[#1E1E1E] transition-colors group">
                   <div className="w-12 h-12 bg-[#0A0A0A] border border-[#1E1E1E] rounded-lg flex items-center justify-center group-hover:border-[#a855f7] group-hover:text-[#a855f7] transition-colors"><Mail size={20} /></div>
                   <span className="font-medium text-[#EDEDED] group-hover:text-white">Email Directo</span>
                 </a>
@@ -889,12 +712,8 @@ export default function PortfolioPage() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex flex-col md:flex-row items-center gap-6">
             <div className="text-xl font-bold tracking-tighter">PEDRO POZO.</div>
-            <button 
-              onClick={() => window.dispatchEvent(new CustomEvent('open-terminal'))}
-              className="flex items-center gap-2 text-[11px] font-mono tracking-widest uppercase text-[#8A8A8A] hover:text-[#a855f7] transition-colors bg-[#141414] px-4 py-2 rounded-lg border border-[#1E1E1E]"
-            >
-              <Code2 size={14} />
-              <span>Terminal (Ctrl+K)</span>
+            <button onClick={() => window.dispatchEvent(new CustomEvent('open-terminal'))} className="flex items-center gap-2 text-[11px] font-mono tracking-widest uppercase text-[#8A8A8A] hover:text-[#a855f7] transition-colors bg-[#141414] px-4 py-2 rounded-lg border border-[#1E1E1E]">
+              <Code2 size={14} /><span>Terminal (Ctrl+K)</span>
             </button>
           </div>
           <div className="text-[#666666] text-sm text-center md:text-left">

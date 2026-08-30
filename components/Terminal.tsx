@@ -4,33 +4,36 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Terminal as TerminalIcon } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
-const dict = {
-  es: {
-    welcome: "Terminal iniciada v1.0.0\nEscribe 'help' para ver los comandos disponibles.",
-    notFound: "Comando no encontrado: ",
-    helpMsg: "Comandos disponibles:\n  help    - Muestra este mensaje\n  about   - Información sobre Pedro Pozo\n  skills  - Tecnologías y herramientas\n  contact - Medios de contacto\n  clear   - Limpia la consola",
-    aboutMsg: "PEDRO POZO (DropG)\nConsultor Tecnológico y Desarrollador Full-Stack.\nEspecializado en arquitecturas escalables, diseño UI/UX de alta conversión y administración de servidores.",
-    skillsMsg: "STACK TÉCNICO:\n- Frontend: React, Next.js, TailwindCSS, Framer Motion\n- Backend: Node.js, API REST, Bases de Datos\n- Infraestructura: Linux, Cloud, Docker, Redes",
-    contactMsg: "CONTACTO:\n- Email: contacto.pedropozo@gmail.com\n- WhatsApp: [Oculto por privacidad] Usa el botón en la web\n- GitHub: github.com/eldropg",
-    placeholder: "Escribe un comando...",
-  },
-  en: {
-    welcome: "Terminal initialized v1.0.0\nType 'help' to see available commands.",
-    notFound: "Command not found: ",
-    helpMsg: "Available commands:\n  help    - Shows this message\n  about   - Information about Pedro Pozo\n  skills  - Technologies and tools\n  contact - Contact information\n  clear   - Clears the console",
-    aboutMsg: "PEDRO POZO (DropG)\nTech Consultant & Full-Stack Developer.\nSpecialized in scalable architectures, high-conversion UI/UX design, and server administration.",
-    skillsMsg: "TECH STACK:\n- Frontend: React, Next.js, TailwindCSS, Framer Motion\n- Backend: Node.js, REST APIs, Databases\n- Infrastructure: Linux, Cloud, Docker, Networking",
-    contactMsg: "CONTACT:\n- Email: contacto.pedropozo@gmail.com\n- WhatsApp: [Hidden for privacy] Use the contact button on the web\n- GitHub: github.com/eldropg",
-    placeholder: "Type a command...",
-  }
-};
-
 export default function Terminal({ lang = 'es' }: { lang?: 'es' | 'en' }) {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<{ type: 'input' | 'output'; text: string }[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  // Llamamos a las variables de entorno
+  const email = process.env.NEXT_PUBLIC_EMAIL || "correo@ejemplo.com";
+  
+  const dict = {
+    es: {
+      welcome: "Terminal iniciada v1.0.0\nEscribe 'help' para ver los comandos disponibles.",
+      notFound: "Comando no encontrado: ",
+      helpMsg: "Comandos disponibles:\n  help    - Muestra este mensaje\n  about   - Información sobre Pedro Pozo\n  skills  - Tecnologías y herramientas\n  contact - Medios de contacto\n  clear   - Limpia la consola",
+      aboutMsg: "PEDRO POZO (DropG)\nConsultor Tecnológico y Desarrollador Full-Stack.\nEspecializado en arquitecturas escalables, diseño UI/UX de alta conversión y administración de servidores.",
+      skillsMsg: "STACK TÉCNICO:\n- Frontend: React, Next.js, TailwindCSS, Framer Motion\n- Backend: Node.js, API REST, Bases de Datos\n- Infraestructura: Linux, Cloud, Docker, Redes",
+      contactMsg: `CONTACTO:\n- Email: ${email}\n- WhatsApp: [Oculto en terminal] Usa el botón de la web\n- GitHub: github.com/eldropg`,
+      placeholder: "Escribe un comando...",
+    },
+    en: {
+      welcome: "Terminal initialized v1.0.0\nType 'help' to see available commands.",
+      notFound: "Command not found: ",
+      helpMsg: "Available commands:\n  help    - Shows this message\n  about   - Information about Pedro Pozo\n  skills  - Technologies and tools\n  contact - Contact information\n  clear   - Clears the console",
+      aboutMsg: "PEDRO POZO (DropG)\nTech Consultant & Full-Stack Developer.\nSpecialized in scalable architectures, high-conversion UI/UX design, and server administration.",
+      skillsMsg: "TECH STACK:\n- Frontend: React, Next.js, TailwindCSS, Framer Motion\n- Backend: Node.js, REST APIs, Databases\n- Infrastructure: Linux, Cloud, Docker, Networking",
+      contactMsg: `CONTACT:\n- Email: ${email}\n- WhatsApp: [Hidden in terminal] Use the website button\n- GitHub: github.com/eldropg`,
+      placeholder: "Type a command...",
+    }
+  };
 
   const t = dict[lang];
 
@@ -47,12 +50,9 @@ export default function Terminal({ lang = 'es' }: { lang?: 'es' | 'en' }) {
         setIsOpen((prev) => !prev);
       }
     };
-
     const handleOpenEvent = () => setIsOpen(true);
-
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('open-terminal', handleOpenEvent);
-
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('open-terminal', handleOpenEvent);
