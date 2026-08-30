@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PEDRO POZO — Ingeniería Técnica & Desarrollo
 
-## Getting Started
+Consultor Tecnológico y Desarrollador Full-Stack radicado en Chile. 
+Especializado en arquitecturas escalables, diseño UI/UX de alta conversión y sistemas a medida.
 
-First, run the development server:
+> *"Cero plantillas. Ingeniería real. Sistemas optimizados para cargar al instante."*
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Estructura del Ecosistema
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Este repositorio contiene mi portafolio profesional y un ecosistema de **Arquitecturas Base** listas para ser adaptadas a entornos de producción corporativos:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Portafolio Principal (`/`)
+Interfaz brutalista y minimalista con rendimiento en milisegundos.
+- **Soporte Bilingüe Nativo** (Español / Inglés) sin recargas de página.
+- **Terminal Interactiva Integrada** (Accesible vía `Ctrl + K`).
+- **Smooth Scrolling** para una experiencia de navegación fluida.
+- Animaciones físicas de alta gama mediante Framer Motion.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. Aura Commerce (`/aura`)
+Arquitectura E-commerce Headless orientada a marcas premium y hardware.
+- Diseño editorial asimétrico (Sticky Scroll).
+- Sistema de carrito de compras reactivo y persistente.
+- Filtro por categorías y visualización de catálogo complejo.
+- Panel interactivo para compra y canje de *Giftcards*.
+- Mega-Footer corporativo.
 
-## Learn More
+### 3. NOIR Bistro — Menú QR (`/menu-qr`)
+Plataforma Gastronómica *Mobile-First* para el sector *Fine Dining*.
+- UI oscura y elegante (Espresso & Bronce) centrada en la tipografía.
+- Perfiles sensoriales dinámicos (Intensidad, Frescor, Dulzor).
+- **Lógica de Upselling:** Maridaje del chef sugerido automáticamente.
+- Emulación de interacción con el restaurante (Llamar garzón, Pedir cuenta).
 
-To learn more about Next.js, take a look at the following resources:
+##  Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+El ecosistema está construido bajo los estándares más modernos de la industria:
+- **Framework:** [Next.js](https://nextjs.org/) (React)
+- **Lenguaje:** TypeScript
+- **Estilos:** [Tailwind CSS](https://tailwindcss.com/)
+- **Animaciones:** [Framer Motion](https://www.framer.com/motion/)
+- **Iconografía:** Lucide React
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+##  Despliegue Local
 
-## Deploy on Vercel
+Para correr este proyecto en tu entorno local:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clona el repositorio:
+   ```bash
+   git clone [https://github.com/eldropg/tu-repositorio.git](https://github.com/eldropg/tu-repositorio.git)
