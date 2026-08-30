@@ -12,8 +12,8 @@ const dict = {
     nav: { services: "Servicios", process: "Proceso", philosophy: "Filosofía", portfolio: "Portafolio", pricing: "Pricing", faq: "FAQ", contact: "Contacto", talk: "Hablemos" },
     hero: {
       badge: "Consultor Tecnológico & Desarrollador",
-      title1: "Ingeniería técnica.",
-      title2: "Impacto visual.",
+      title1: "Ingeniería técnica",
+      title2: "Impacto visual",
       desc: "Construyo el software que tu negocio necesita. Desde el diseño UI/UX y la experiencia visual, hasta la programación y administración de tus servidores.",
       cta: "Iniciemos un proyecto",
       explore: "Explorar"
@@ -414,7 +414,7 @@ export default function PortfolioPage() {
       
       <header className={`fixed top-0 w-full z-40 transition-all duration-500 border-b ${scrolled ? 'bg-[#0A0A0A]/80 backdrop-blur-xl border-[#1E1E1E] py-2' : 'bg-transparent border-transparent py-4'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <div className="text-xl font-bold tracking-tighter">PEDRO POZO.</div>
+          <div className="text-xl font-bold tracking-tighter">PEDRO POZO</div>
           <nav className="hidden lg:flex gap-8 text-sm font-medium text-[#8A8A8A]">
             <a href="#servicios" onClick={(e) => handleSmoothScroll(e, '#servicios')} className="hover:text-white transition-colors">{t.nav.services}</a>
             <a href="#proceso" onClick={(e) => handleSmoothScroll(e, '#proceso')} className="hover:text-white transition-colors">{t.nav.process}</a>
@@ -711,7 +711,7 @@ export default function PortfolioPage() {
       <footer className="py-12 px-6 bg-[#0A0A0A] border-t border-[#1E1E1E] relative z-20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex flex-col md:flex-row items-center gap-6">
-            <div className="text-xl font-bold tracking-tighter">PEDRO POZO.</div>
+            <div className="text-xl font-bold tracking-tighter">PEDRO POZO</div>
             <button onClick={() => window.dispatchEvent(new CustomEvent('open-terminal'))} className="flex items-center gap-2 text-[11px] font-mono tracking-widest uppercase text-[#8A8A8A] hover:text-[#a855f7] transition-colors bg-[#141414] px-4 py-2 rounded-lg border border-[#1E1E1E]">
               <Code2 size={14} /><span>Terminal (Ctrl+K)</span>
             </button>
