@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --velian-bg: #0A0A0A;
+  --velian-text: #EDEDED;
+  --velian-surface: #141414;
+  --velian-surface-hover: #1E1E1E;
+  --font-serif: var(--font-playfair), serif;
+}
+
+body {
+  background-color: var(--velian-bg);
+  color: var(--velian-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+::selection {
+  background-color: var(--velian-text);
+  color: var(--velian-bg);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--velian-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--velian-surface-hover);
+  border-radius: 4px;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
