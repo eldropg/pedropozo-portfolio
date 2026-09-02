@@ -23,7 +23,7 @@ export const metadata = {
   title: 'Pedro Pozo | Developer', 
   description: 'Portafolio profesional de Pedro Pozo. Desarrollo de software de alto rendimiento, arquitecturas escalables y diseño UI/UX High-End.',
   icons: {
-    icon: '/logo.png', 
+    icon: '/favicon.ico', 
   },
   openGraph: {
     title: 'Pedro Pozo | Software Engineer',
@@ -32,7 +32,7 @@ export const metadata = {
     siteName: 'Pedro Pozo Portfolio',
     images: [
       {
-        url: '/logo.png',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Pedro Pozo Portfolio Preview',

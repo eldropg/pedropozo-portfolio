@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 import { 
   ArrowRight, Globe, ShoppingBag, Database, Smartphone, LifeBuoy, Code2, Plus, ChevronLeft, ChevronRight, ChevronDown, Mail, ShoppingCart, BarChart3, QrCode, ExternalLink, Check, Zap, Layers
 } from 'lucide-react';
@@ -375,6 +375,18 @@ export default function PortfolioPage() {
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
+  // --- LÓGICA PARA LUCES QUE SIGUEN AL MOUSE ---
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Física de resorte para que el movimiento sea fluido (sin cortes bruscos)
+  const springX = useSpring(mouseX, { stiffness: 40, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 40, damping: 20 });
+  
+  // Transformamos el resorte a negativo para la luz secundaria (efecto parallax opuesto)
+  const springXInverse = useTransform(springX, (v) => -v * 0.5);
+  const springYInverse = useTransform(springY, (v) => -v * 0.5);
+
   const waNumber = process.env.NEXT_PUBLIC_WHATSAPP || ""; 
   const waLink = waNumber ? `https://wa.me/${waNumber}` : "#";
   const email = process.env.NEXT_PUBLIC_EMAIL || "";
@@ -382,9 +394,24 @@ export default function PortfolioPage() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
+    
+    // Función que captura el movimiento del mouse
+    const handleMouseMove = (e: MouseEvent) => {
+      // Calculamos la distancia desde el centro de la pantalla
+      const x = (e.clientX - window.innerWidth / 2) * 0.15; // 15% de intensidad de movimiento
+      const y = (e.clientY - window.innerHeight / 2) * 0.15;
+      mouseX.set(x);
+      mouseY.set(y);
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener('mousemove', handleMouseMove); // Activamos el event listener
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove); // Limpiamos al salir
+    };
+  }, [mouseX, mouseY]);
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
@@ -440,13 +467,27 @@ export default function PortfolioPage() {
       </header>
 
       <main>
-        {/* --- NUEVA ESTRUCTURA DEL HERO PARA EVITAR QUE CHOQUEN LOS ELEMENTOS --- */}
+        {/* --- HERO SECTION CON LUCES INTERACTIVAS --- */}
         <section className="relative w-full min-h-screen flex flex-col justify-between items-center px-6 overflow-hidden pt-32 pb-10">
+          {/* Grid Estático */}
           <motion.div animate={{ backgroundPosition: ['0px 0px', '0px 40px'] }} transition={{ repeat: Infinity, duration: 2, ease: "linear" }} className="absolute inset-0 z-0 opacity-20 pointer-events-none" style={{ backgroundImage: `linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px)`, backgroundSize: '40px 40px', maskImage: 'radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%)', WebkitMaskImage: 'radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%)' }} />
-          <motion.div animate={{ x: [0, 50, -30, 0], y: [0, -50, 30, 0], scale: [1, 1.1, 0.9, 1] }} transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }} className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-[#a855f7]/20 blur-[120px] pointer-events-none" />
-          <motion.div animate={{ x: [0, -40, 20, 0], y: [0, 40, -20, 0], scale: [1, 0.9, 1.1, 1] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }} className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-white/10 blur-[120px] pointer-events-none" />
+          
+          {/* Luz Púrpura (Interactiva) */}
+          <motion.div 
+            style={{ x: springX, y: springY }}
+            className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] z-0 pointer-events-none"
+          >
+            <motion.div animate={{ scale: [1, 1.1, 0.9, 1], opacity: [0.2, 0.25, 0.2] }} transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }} className="w-full h-full rounded-full bg-[#a855f7] blur-[120px]" />
+          </motion.div>
 
-          {/* Contenedor central flexible (evita que los elementos colisionen en pantallas pequeñas) */}
+          {/* Luz Blanca Parallax (Interactiva - Mueve Opuesto) */}
+          <motion.div 
+            style={{ x: springXInverse, y: springYInverse }}
+            className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] z-0 pointer-events-none"
+          >
+            <motion.div animate={{ scale: [1, 0.9, 1.1, 1], opacity: [0.1, 0.12, 0.1] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }} className="w-full h-full rounded-full bg-white blur-[120px]" />
+          </motion.div>
+
           <div className="flex-1 flex flex-col justify-center items-center w-full z-10">
             <motion.div style={{ y: heroY, opacity: heroOpacity }} className="w-full max-w-7xl mx-auto text-center px-4">
               <motion.div initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="mb-10 flex justify-center">
@@ -494,7 +535,6 @@ export default function PortfolioPage() {
             </motion.div>
           </div>
 
-          {/* Botón Explorar posicionado de forma relativa al fondo, no absoluta */}
           <motion.a 
             href="#servicios" onClick={(e) => handleSmoothScroll(e, '#servicios')} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 1.8 }}
             className="relative flex flex-col items-center gap-3 cursor-pointer group z-20 mt-12"
