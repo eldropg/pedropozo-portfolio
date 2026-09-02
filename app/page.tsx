@@ -81,7 +81,7 @@ const dict = {
       previewText: "Ver Demo en Vivo",
       items: [
         {
-          name: "Aura Commerce",
+          name: "Vectra Commerce",
           type: "E-commerce Headless",
           desc: "Arquitectura de tienda online ultrarrápida. Diseño minimalista enfocado en conversión, carrito de compras optimizado y gestión de pagos seguros.",
           tags: ["NEXT.JS", "STRIPE", "TAILWIND"],
@@ -222,7 +222,7 @@ const dict = {
       previewText: "Live Demo",
       items: [
         {
-          name: "Aura Commerce",
+          name: "Vectra Commerce",
           type: "Headless E-commerce",
           desc: "Lightning-fast online store architecture. Minimalist design focused on conversion, optimized shopping cart, and secure payment management.",
           tags: ["NEXT.JS", "STRIPE", "TAILWIND"],
@@ -375,7 +375,6 @@ export default function PortfolioPage() {
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
-  // Variables de Entorno (si no existen localmente, se usa un fallback genérico que no exponga tus datos reales a bots de github si falta el env)
   const waNumber = process.env.NEXT_PUBLIC_WHATSAPP || ""; 
   const waLink = waNumber ? `https://wa.me/${waNumber}` : "#";
   const email = process.env.NEXT_PUBLIC_EMAIL || "";
@@ -414,7 +413,10 @@ export default function PortfolioPage() {
       
       <header className={`fixed top-0 w-full z-40 transition-all duration-500 border-b ${scrolled ? 'bg-[#0A0A0A]/80 backdrop-blur-xl border-[#1E1E1E] py-2' : 'bg-transparent border-transparent py-4'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <div className="text-xl font-bold tracking-tighter">PEDRO POZO</div>
+          <div className="flex items-center gap-3">
+            <img src="/logo.png" alt="Logo Pedro Pozo" className="w-8 h-8 object-contain" />
+            <div className="text-xl font-bold tracking-tighter">PEDRO POZO</div>
+          </div>
           <nav className="hidden lg:flex gap-8 text-sm font-medium text-[#8A8A8A]">
             <a href="#servicios" onClick={(e) => handleSmoothScroll(e, '#servicios')} className="hover:text-white transition-colors">{t.nav.services}</a>
             <a href="#proceso" onClick={(e) => handleSmoothScroll(e, '#proceso')} className="hover:text-white transition-colors">{t.nav.process}</a>
@@ -438,59 +440,64 @@ export default function PortfolioPage() {
       </header>
 
       <main>
-        <section className="relative w-full min-h-screen flex flex-col justify-center items-center px-6 overflow-hidden">
+        {/* --- NUEVA ESTRUCTURA DEL HERO PARA EVITAR QUE CHOQUEN LOS ELEMENTOS --- */}
+        <section className="relative w-full min-h-screen flex flex-col justify-between items-center px-6 overflow-hidden pt-32 pb-10">
           <motion.div animate={{ backgroundPosition: ['0px 0px', '0px 40px'] }} transition={{ repeat: Infinity, duration: 2, ease: "linear" }} className="absolute inset-0 z-0 opacity-20 pointer-events-none" style={{ backgroundImage: `linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px)`, backgroundSize: '40px 40px', maskImage: 'radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%)', WebkitMaskImage: 'radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%)' }} />
           <motion.div animate={{ x: [0, 50, -30, 0], y: [0, -50, 30, 0], scale: [1, 1.1, 0.9, 1] }} transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }} className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-[#a855f7]/20 blur-[120px] pointer-events-none" />
           <motion.div animate={{ x: [0, -40, 20, 0], y: [0, 40, -20, 0], scale: [1, 0.9, 1.1, 1] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }} className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-white/10 blur-[120px] pointer-events-none" />
 
-          <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative z-10 w-full max-w-7xl mx-auto text-center pt-20 px-4">
-            <motion.div initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="mb-10 flex justify-center">
-              <span className="px-5 py-2 rounded-full border border-[#1E1E1E] bg-[#141414]/80 backdrop-blur-md text-[#8A8A8A] text-xs font-semibold uppercase tracking-widest shadow-[0_0_15px_rgba(168,85,247,0.15)]">
-                {t.hero.badge}
-              </span>
+          {/* Contenedor central flexible (evita que los elementos colisionen en pantallas pequeñas) */}
+          <div className="flex-1 flex flex-col justify-center items-center w-full z-10">
+            <motion.div style={{ y: heroY, opacity: heroOpacity }} className="w-full max-w-7xl mx-auto text-center px-4">
+              <motion.div initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="mb-10 flex justify-center">
+                <span className="px-5 py-2 rounded-full border border-[#1E1E1E] bg-[#141414]/80 backdrop-blur-md text-[#8A8A8A] text-xs font-semibold uppercase tracking-widest shadow-[0_0_15px_rgba(168,85,247,0.15)]">
+                  {t.hero.badge}
+                </span>
+              </motion.div>
+
+              <div className="flex flex-col items-center justify-center -space-y-6 md:-space-y-10 mb-10 w-full">
+                <motion.h1 
+                  key={`${lang}-1`}
+                  initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.04 } } }}
+                  className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-bold tracking-tighter leading-none z-10 flex flex-wrap justify-center w-full px-2"
+                >
+                  {t.hero.title1.split('').map((char, index) => (
+                    <motion.span key={index} variants={{ hidden: { opacity: 0, y: "100%", rotateX: -90 }, visible: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }} style={{ display: "inline-block", transformOrigin: "bottom", whiteSpace: "pre" }}>
+                      {char}
+                    </motion.span>
+                  ))}
+                </motion.h1>
+                
+                <motion.h1 
+                  key={`${lang}-2`}
+                  initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.05, delayChildren: 0.5 } } }}
+                  className="text-5xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-serif italic tracking-tight leading-none text-[#a855f7] z-20 flex flex-wrap justify-center w-full px-2"
+                >
+                  {t.hero.title2.split('').map((char, index) => (
+                    <motion.span key={index} variants={{ hidden: { opacity: 0, filter: "blur(12px)", scale: 1.2 }, visible: { opacity: 1, filter: "blur(0px)", scale: 1, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }} style={{ display: "inline-block", whiteSpace: "pre" }}>
+                      {char}
+                    </motion.span>
+                  ))}
+                </motion.h1>
+              </div>
+
+              <motion.p initial={{ opacity: 0, y: 20, filter: "blur(10px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 1, delay: 1, ease: [0.16, 1, 0.3, 1] }} className="text-lg md:text-xl text-[#8A8A8A] max-w-2xl mx-auto mb-14 leading-relaxed px-4">
+                {t.hero.desc}
+              </motion.p>
+
+              <motion.div initial={{ opacity: 0, filter: "blur(10px)" }} animate={{ opacity: 1, filter: "blur(0px)" }} transition={{ duration: 1, delay: 1.2 }} className="flex justify-center">
+                <a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')} className="group flex items-center gap-3 px-8 py-4 bg-[#EDEDED] text-[#0A0A0A] font-bold rounded-full hover:bg-white transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                  {t.hero.cta}
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
+                </a>
+              </motion.div>
             </motion.div>
+          </div>
 
-            <div className="flex flex-col items-center justify-center -space-y-6 md:-space-y-10 mb-10 w-full">
-              <motion.h1 
-                key={`${lang}-1`}
-                initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.04 } } }}
-                className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-bold tracking-tighter leading-none z-10 flex flex-wrap justify-center w-full px-2"
-              >
-                {t.hero.title1.split('').map((char, index) => (
-                  <motion.span key={index} variants={{ hidden: { opacity: 0, y: "100%", rotateX: -90 }, visible: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }} style={{ display: "inline-block", transformOrigin: "bottom", whiteSpace: "pre" }}>
-                    {char}
-                  </motion.span>
-                ))}
-              </motion.h1>
-              
-              <motion.h1 
-                key={`${lang}-2`}
-                initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.05, delayChildren: 0.5 } } }}
-                className="text-5xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-serif italic tracking-tight leading-none text-[#a855f7] z-20 flex flex-wrap justify-center w-full px-2"
-              >
-                {t.hero.title2.split('').map((char, index) => (
-                  <motion.span key={index} variants={{ hidden: { opacity: 0, filter: "blur(12px)", scale: 1.2 }, visible: { opacity: 1, filter: "blur(0px)", scale: 1, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }} style={{ display: "inline-block", whiteSpace: "pre" }}>
-                    {char}
-                  </motion.span>
-                ))}
-              </motion.h1>
-            </div>
-
-            <motion.p initial={{ opacity: 0, y: 20, filter: "blur(10px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 1, delay: 1, ease: [0.16, 1, 0.3, 1] }} className="text-lg md:text-xl text-[#8A8A8A] max-w-2xl mx-auto mb-14 leading-relaxed px-4">
-              {t.hero.desc}
-            </motion.p>
-
-            <motion.div initial={{ opacity: 0, filter: "blur(10px)" }} animate={{ opacity: 1, filter: "blur(0px)" }} transition={{ duration: 1, delay: 1.2 }} className="flex justify-center">
-              <a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')} className="group flex items-center gap-3 px-8 py-4 bg-[#EDEDED] text-[#0A0A0A] font-bold rounded-full hover:bg-white transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-                {t.hero.cta}
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
-              </a>
-            </motion.div>
-          </motion.div>
-
+          {/* Botón Explorar posicionado de forma relativa al fondo, no absoluta */}
           <motion.a 
             href="#servicios" onClick={(e) => handleSmoothScroll(e, '#servicios')} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 1.8 }}
-            className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 cursor-pointer group z-20"
+            className="relative flex flex-col items-center gap-3 cursor-pointer group z-20 mt-12"
           >
             <span className="text-[10px] font-mono uppercase tracking-widest text-[#8A8A8A] group-hover:text-[#a855f7] transition-colors">{t.hero.explore}</span>
             <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}>
@@ -711,7 +718,10 @@ export default function PortfolioPage() {
       <footer className="py-12 px-6 bg-[#0A0A0A] border-t border-[#1E1E1E] relative z-20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex flex-col md:flex-row items-center gap-6">
-            <div className="text-xl font-bold tracking-tighter">PEDRO POZO</div>
+            <div className="flex items-center gap-3">
+              <img src="/logo.png" alt="Logo Pedro Pozo" className="w-6 h-6 object-contain grayscale opacity-70" />
+              <div className="text-xl font-bold tracking-tighter">PEDRO POZO</div>
+            </div>
             <button onClick={() => window.dispatchEvent(new CustomEvent('open-terminal'))} className="flex items-center gap-2 text-[11px] font-mono tracking-widest uppercase text-[#8A8A8A] hover:text-[#a855f7] transition-colors bg-[#141414] px-4 py-2 rounded-lg border border-[#1E1E1E]">
               <Code2 size={14} /><span>Terminal (Ctrl+K)</span>
             </button>

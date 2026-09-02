@@ -19,9 +19,28 @@ const playfair = Playfair_Display({
   style: ["normal", "italic"],
 });
 
-export const metadata: Metadata = {
-  title: "Pedro Pozo | Consultor Tecnológico",
-  description: "Ingeniería técnica. Impacto visual.",
+export const metadata = {
+  title: 'Pedro Pozo | Developer', 
+  description: 'Portafolio profesional de Pedro Pozo. Desarrollo de software de alto rendimiento, arquitecturas escalables y diseño UI/UX High-End.',
+  icons: {
+    icon: '/logo.png', 
+  },
+  openGraph: {
+    title: 'Pedro Pozo | Software Engineer',
+    description: 'Explora mis proyectos y conoce soluciones innovadoras en desarrollo de software y arquitecturas web de alto nivel.',
+    url: 'https://pedropozo.dev',
+    siteName: 'Pedro Pozo Portfolio',
+    images: [
+      {
+        url: '/logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Pedro Pozo Portfolio Preview',
+      },
+    ],
+    locale: 'es_CL',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
