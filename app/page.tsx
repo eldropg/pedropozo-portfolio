@@ -7,6 +7,7 @@ import {
 import { useState, useEffect, useRef } from 'react';
 import Terminal from '../components/Terminal';
 
+
 const dict = {
   es: {
     nav: { services: "Servicios", process: "Proceso", philosophy: "Filosofía", portfolio: "Portafolio", pricing: "Pricing", faq: "FAQ", contact: "Contacto", talk: "Hablemos" },
